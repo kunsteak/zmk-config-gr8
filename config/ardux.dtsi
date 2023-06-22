@@ -208,7 +208,7 @@
 #define LAYER_ID_SYMBOLS 2
 #define LAYER_ID_PARENTHETICALS 3
 #define LAYER_ID_NAVIGATION 4
-#define LAYER_ID_BT_SEL 5
+#define LAYER_ID_MOUSE 5
 #define LAYER_ID_CUSTOM 6
 #define LAYER_ID_BIG_SYM 7
 #define LAYER_ID_BIG_FUNCTION 8
@@ -261,6 +261,7 @@
 		 *****************************************/
 		combo_esc              { timeout-ms = <TIMEOUT_COMBO_3>; key-positions = <KEY_A KEY_R KEY_O>; bindings = <&kp ESC>; };
 		combo_layer_navigation { timeout-ms = <TIMEOUT_COMBO_3>; key-positions = <KEY_R KEY_E KEY_I>; bindings = <&tog LAYER_ID_NAVIGATION>; };
+		combo_layer_mouse      { timeout-ms = <TIMEOUT_COMBO_3>; key-positions = <KEY_A KEY_T KEY_Y>; bindings = <&tog LAYER_ID_MOUSE>; };
 
 		combo_m            { layers = <LAYER_ID_BASE>; timeout-ms = <TIMEOUT_COMBO_3>; key-positions = <KEY_Y KEY_I KEY_O>; bindings = <&kp M>; };
 		combo_d            { layers = <LAYER_ID_BASE>; timeout-ms = <TIMEOUT_COMBO_3>; key-positions = <KEY_A KEY_R KEY_T>; bindings = <&kp D>; };
@@ -276,7 +277,7 @@
 		combo_tab             { timeout-ms = <TIMEOUT_COMBO_4>; key-positions = <KEY_A KEY_R KEY_T KEY_O>; bindings = <&kp TAB>; };
 		combo_space           { timeout-ms = <TIMEOUT_COMBO_4>; key-positions = <KEY_E KEY_Y KEY_I KEY_O>; bindings = <&kp SPACE>; };
 		combo_shift           { timeout-ms = <TIMEOUT_COMBO_4>; key-positions = <KEY_E KEY_R KEY_T KEY_S>; bindings = <&sk LSHFT>; };
-		combo_layer_bt_select { timeout-ms = <TIMEOUT_COMBO_4>; key-positions = <KEY_A KEY_E KEY_S KEY_O>; bindings = <&tog LAYER_ID_BT_SEL>; };
+		// combo_layer_bt_select { timeout-ms = <TIMEOUT_COMBO_4>; key-positions = <KEY_A KEY_E KEY_S KEY_O>; bindings = <&tog LAYER_ID_BT_SEL>; };
 		combo_bt_ldr          { timeout-ms = <TIMEOUT_COMBO_4>; key-positions = <KEY_R KEY_Y KEY_T KEY_I>; bindings = <&bootloader>; };
 
 		combo_z         { layers = <LAYER_ID_BASE>; timeout-ms = <TIMEOUT_COMBO_4>; key-positions = <KEY_A KEY_R KEY_T KEY_S>; bindings = <&kp Z>; };
@@ -284,6 +285,24 @@
 		combo_meh       { layers = <LAYER_ID_BASE>; timeout-ms = <TIMEOUT_COMBO_4>; key-positions = <KEY_O KEY_I KEY_Y KEY_A>; bindings = <&sk LC(LS(LALT))>; };
 	};
 };
+
+/*****************************************
+ * Personal Macros
+ *****************************************/
+/ {
+    macros {
+        numlock: numlock {
+            label = "NLCK";
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings
+                = <&macro_tap &kp KP_NUM>
+                , <&macro_pause_for_release>
+                , <&macro_tap &kp KP_NUM>
+                ;
+        };
+    };
+}; 
 
 /*****************************************
  * Standard ARDUX layer activation definitions
@@ -390,13 +409,13 @@
 				TRAILING_NONES
 			>;
 		};
-		bt {
-			label = "BT";
+		mouse {
+			label = "Mouse";
 			bindings = <
 				LEADING_NONES
-				&bt BT_SEL 0 &bt BT_SEL 1 &bt BT_SEL 2 ARDUX_BT_TOP
+				&mkp LCLK                                           &mkp RCLK    &mkp MCLK   &mwh SCROLL_UP
 				MIDDLE_NONES
-				&bt BT_SEL 3 &bt BT_SEL 4 &bt BT_SEL 5 ARDUX_BT_BOTTOM
+				&numlock                                            &none        &none       &mwh SCROLL_DOWN
 				TRAILING_NONES
 			>;
 		};
@@ -513,13 +532,13 @@
 				TRAILING_NONES
 			>;
 		};
-		bt {
-			label = "BT";
+		mouse {
+			label = "Mouse";
 			bindings = <
 				LEADING_NONES
-				ARDUX_BT_TOP    &bt BT_SEL 2 &bt BT_SEL 1 &bt BT_SEL 0
+				&mwh SCROLL_UP                              &mkp MCLK  &mkp RCLK  &mkp LCLK
 				MIDDLE_NONES
-				ARDUX_BT_BOTTOM &bt BT_SEL 5 &bt BT_SEL 4 &bt BT_SEL 3
+				&mwh SCROLL_DOWN                            &none      &none      &numlock
 				TRAILING_NONES
 			>;
 		};
