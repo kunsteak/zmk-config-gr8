@@ -15,3 +15,5 @@
 include:
   - board: nice_nano_v2
     shield: gr8_left
+  - board: nice_nano_v2
+    shield: gr8_right
