@@ -413,9 +413,9 @@
 			label = "Mouse";
 			bindings = <
 				LEADING_NONES
-				&mkp MB1                                            &mkp MB2     &mkp MB3    &mwh SCROLL_UP
+				&mkp MB1                                            &mkp MB2     &mkp MB3    &mwh SCROLL_DOWN
 				MIDDLE_NONES
-				&numlock                                            &mkp MB4     &mkp MB5    &mwh SCROLL_DOWN
+				&numlock                                            &mkp MB4     &mkp MB5    &mwh SCROLL_UP
 				TRAILING_NONES
 			>;
 		};
@@ -536,9 +536,9 @@
 			label = "Mouse";
 			bindings = <
 				LEADING_NONES
-				&mwh SCROLL_UP                              &mkp MB3   &mkp MB2   &mkp MB1
+				&mwh SCROLL_DOWN                            &mkp MB3   &mkp MB2   &mkp MB1
 				MIDDLE_NONES
-				&mwh SCROLL_DOWN                            &mkp MB5   &mkp MB4   &numlock
+				&mwh SCROLL_UP                              &mkp MB5   &mkp MB4   &numlock
 				TRAILING_NONES
 			>;
 		};
